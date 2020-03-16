@@ -21,6 +21,7 @@ import com.py.entily.Admin;
 import com.py.entily.Book;
 import com.py.entily.User;
 
+//啊啊啊
 @SessionAttributes(value = {"adminname","username"})
 @Controller
 public class AdminController {
