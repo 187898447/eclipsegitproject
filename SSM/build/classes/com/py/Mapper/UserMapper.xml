@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.py.Mapper.UserMapper">
+	<select id="qureyAllUser" resultType="com.py.entily.User">
+		select * from User
+	</select>
+	<select id="qureyUser" parameterType="com.py.entily.User" resultType="com.py.entily.User">
+		select * from User where name = #{name} and pwd = #{pwd}
+	</select>
+	<select id="qureyUserWhithName" parameterType="com.py.entily.User" resultType="com.py.entily.User">
+		select * from User where name = #{name}
+	</select>
+	<insert id="addUser" parameterType="com.py.entily.User">
+		insert into User(name,pwd,problem,answer) values(#{name},#{pwd},#{problem},#{answer}) 
+	</insert>
+	<update id="setpwd" parameterType="com.py.entily.User">
+		update User set pwd = #{pwd} where name = #{name}
+		<if test="problem!='' and problem!=null and answer!='' and answer!=null">
+		 	and problem = #{problem} and answer = #{answer}
+		 </if>
+	</update>
+	<update id="changeuser" parameterType="com.py.entily.User">
+		update user set pwd=#{pwd},problem=#{problem},answer=#{answer} where name=#{name}
+	</update>
+	<delete id="deleteuser" parameterType="com.py.entily.User">
+		delete from user where name = #{name}
+	</delete>
+</mapper>

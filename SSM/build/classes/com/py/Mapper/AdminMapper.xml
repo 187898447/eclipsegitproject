@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.py.Mapper.AdminMapper">
+	<select id="qureyAllAdmin" resultType="com.py.entily.Admin">
+		select * from admin
+	</select>
+	<select id="qureyAdmin" parameterType="com.py.entily.Admin" resultType="com.py.entily.Admin">
+		select * from admin where name = #{name} and pwd = #{pwd}
+	</select>
+	<select id="qureyAdminWithName" parameterType="com.py.entily.Admin" resultType="com.py.entily.Admin">
+		select * from admin where name = #{name}
+	</select>
+	<insert id="addAdmin" parameterType="com.py.entily.Admin">
+		insert into admin values(#{name},#{pwd}) 
+	</insert>
+	<update id="changeadmin" parameterType="com.py.entily.Admin">
+		update admin set pwd=#{pwd} where name=#{name}
+	</update>
+	<delete id="deleteadmin" parameterType="com.py.entily.Admin">
+		delete from admin where name = #{name}
+	</delete>
+</mapper>

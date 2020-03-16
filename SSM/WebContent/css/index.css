@@ -1,0 +1,40 @@
+input:focus {
+	background-color:lemonchiffon ;
+}
+body{
+	background: url(../img/001.png) no-repeat;
+  	height: 100%;
+  	width: 100%;
+  	background-size: cover;
+}
+*{
+	color: green;
+	font-size: 30px;
+	font-family:"curlz mt",华文彩云;
+}
+#div1 {
+	font-size: 50px;
+	font-family: 华文行楷;
+	color: blueviolet;
+	margin: auto;
+}
+table{
+	background:cornflowerblue;
+	margin-top: 50px; 
+	padding: 20px;
+	margin: auto;
+}
+input{
+	background:cornflowerblue;
+}
+input[type="submit"]{
+	margin-left:390px ;
+}
+a{
+	 text-decoration:none;
+	 font-size:20px;
+}
+input[type="text"],input[type="password"]{
+	width: 420px;
+}
+

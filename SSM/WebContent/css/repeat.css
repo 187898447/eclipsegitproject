@@ -1,0 +1,37 @@
+body{
+	background: url(../img/001.png) no-repeat;
+  	height: 100%;
+  	width: 100%;
+  	background-size: cover;
+  	font-size: 18px;
+}
+input[type="text"]:focus {
+	background-color:lemonchiffon ;
+}
+#box{
+	background-color: gainsboro;
+	margin: auto;
+	margin-top: 10%;
+	width: 400px;
+	padding: 70px;
+}
+input[type="text"]{
+	font-size:18px;
+	padding: 10px;
+	background-color: gainsboro;
+}
+input[type="submit"],input[type="reset"]{
+	font-size:18px;
+	margin-top: 30px;
+	padding: 10px;
+	background-color: gainsboro;
+}
+input[type="submit"]{
+	margin-left:200px ;
+}
+select{
+	width: 250px;
+	font-size:18px;
+	padding: 10px;
+	background-color: gainsboro;
+}

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	
+	<bean id="adminController" class="com.py.Controller.AdminController">
+		<property name="adminService" ref="adminService"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="bbooksService" ref="bbooksService"></property>
+	</bean>
+	<bean id="bookController" class="com.py.Controller.BookController">
+		<property name="bookService" ref="bookService"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="bbooksService" ref="bbooksService"></property>
+	</bean>
+	<bean id="userController" class="com.py.Controller.UserController">
+		<property name="adminService" ref="adminService"></property>
+		<property name="userService" ref="userService"></property>
+		<property name="bookService" ref="bookService"></property>
+		<property name="bbooksService" ref="bbooksService"></property>
+	</bean>
+	
+	<context:component-scan base-package="com.py.Controller"></context:component-scan>
+	
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/view/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+	<mvc:annotation-driven></mvc:annotation-driven>
+	<mvc:default-servlet-handler />
+	
+	<mvc:interceptors>
+		<!-- 配置具体的拦截路径 -->
+		<mvc:interceptor>
+			<!-- 指定拦截的路径,基于ant风格 -->
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/img/**" />
+			<mvc:exclude-mapping path="/css/**" />
+			<mvc:exclude-mapping path="/js/**" />
+			<mvc:exclude-mapping path="/**/.jsp" />
+			<mvc:exclude-mapping path="/index" />
+			<!-- 指定拦不截的路径 -->
+			<bean  class="com.py.Filter.MyInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+</beans>

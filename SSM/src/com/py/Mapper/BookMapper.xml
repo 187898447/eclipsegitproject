@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.py.Mapper.BookMapper">
+	<select id="qureyAllBook" resultType="com.py.entily.Book">
+		select * from book
+	</select>
+	<select id="qureyBookWithBookName" parameterType="com.py.entily.Book" resultType="com.py.entily.Book">
+		select * from book 
+		<if test="bookname!='' and bookname!=null">
+			where bookname like '%${bookname}%'
+		</if>
+	</select>
+	<select id="qureyBookWithType" parameterType="com.py.entily.Book" resultType="com.py.entily.Book">
+		select * from book 
+		<if test="type!='' and type!=null">
+			where type = #{type}
+		</if>
+	</select>
+	<select id="qureyBookWithBookName2" parameterType="com.py.entily.Book" resultType="com.py.entily.Book">
+		select * from book where bookname = #{bookname} and author=#{author}
+	</select>
+	<insert id="addbook" parameterType="com.py.entily.Book">
+		insert into book(bookname,author,type,price,number) values(#{bookname},#{author},#{type},#{price},#{number}) 
+	</insert>
+	<update id="changebook" parameterType="com.py.entily.Book">
+		update book set bookname=#{bookname},author=#{author},type=#{type},price=#{price},number=#{number} where id=#{id}
+	</update>
+	<delete id="deletebook" parameterType="com.py.entily.Book">
+		delete from book where id = #{id}
+	</delete>
+	<update id="alter">
+		ALTER TABLE book AUTO_INCREMENT = 1
+	</update>
+	<update id="updateoutbook" parameterType="com.py.entily.Book" >
+		update book set number = #{number}+1 where bookname=#{bookname}
+	</update>
+	<update id="updateoutbook2" parameterType="com.py.entily.Book" >
+		update book set number=#{number}-1 where bookname=#{bookname}
+	</update>
+	<select id="qureyBbooks" parameterType="List" resultType="com.py.entily.Book">
+		select * from book
+			<where>
+				<foreach collection="list" open="bookname in (" close=")" item="bbooks" separator=",">
+					#{bbooks.bookname}
+				</foreach>
+			</where>
+	</select>
+</mapper>
